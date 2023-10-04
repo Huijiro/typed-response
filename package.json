@@ -1,7 +1,7 @@
 {
   "name": "typed-response",
   "version": "0.0.1",
-  "description": "This is a typescript boilerplate project to be used by anyone.",
+  "description": "A simple wrapper for fetch API to get a typed response.",
   "main": "src/main.ts",
   "scripts": {
     "build": "tsc",

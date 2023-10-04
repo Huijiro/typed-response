@@ -1,13 +1,22 @@
+/**
+ * typedResponseOK is a type that extends the Response type and adds a json() method that returns a Promise of the type T.
+ */
 interface typedResponseOK<T> extends Response {
   ok: true;
   json(): Promise<T>;
 }
 
+/**
+ * typedResponseError is a type that extends the Response type and adds a json() method that returns a Promise of the type T.
+ */
 interface typedResponseError<T> extends Response {
   ok: false;
   json(): Promise<T>;
 }
 
+/**
+ * typedResponse is a union type of typedResponseOK and typedResponseError.
+ */
 type typedResponse<T, E> = typedResponseOK<T> | typedResponseError<E>;
 
 /**
@@ -25,3 +34,7 @@ async function typedFetch<TResponse, TError>(
 ): Promise<typedResponse<TResponse, TError>> {
   return await fetch(input, init);
 }
+
+export { typedFetch };
+
+export type { typedResponse, typedResponseOK, typedResponseError };
