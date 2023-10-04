@@ -1,5 +1,5 @@
 {
-  "name": "typescript-base",
+  "name": "typed-response",
   "version": "0.0.1",
   "description": "This is a typescript boilerplate project to be used by anyone.",
   "main": "src/main.ts",
@@ -8,9 +8,11 @@
     "dev": "ts-node src/main.ts"
   },
   "keywords": [
-    "boilerplate",
-    "template",
-    "project-setup"
+    "typescript",
+    "fetch",
+    "response",
+    "typed-response",
+    "API"
   ],
   "author": "Huijiro",
   "license": "ISC",

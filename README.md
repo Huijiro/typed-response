@@ -1,97 +1,55 @@
-# TypeScript Boilerplate Template
+# typed-response - Typed HTTP Requests in TypeScript
 
-A minimalistic TypeScript boilerplate template to kickstart your TypeScript projects on GitHub.
+`typed-response` is a TypeScript utility that simplifies making HTTP requests using the `fetch` API while providing strong typing for both successful and error responses. It allows you to specify the response types based on your application's needs.
 
-## Table of Contents
+## Installation
 
-- [Features](#features)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-- [Usage](#usage)
-- [Folder Structure](#folder-structure)
-
-## Features
-
-- TypeScript pre-configured.
-- Minimal project structure for quick start.
-- Includes common configuration files like `.gitignore`, `.eslint`, and `.prettierrc`.
-- Easy to extend and customize.
-
-## Getting Started
-
-Follow these instructions to get started with your TypeScript project using this boilerplate template.
-
-### Prerequisites
-
-Before you begin, ensure you have met the following requirements:
-
-- Node.js and npm installed on your development machine.
-
-### Installation
-
-1. Clone this repository to your local machine using:
+You can install `typed-response` via npm or yarn:
 
 ```bash
-git clone git@github.com:Huijiro/typescript-base.git
+npm install typed-response
+# or
+yarn add typed-response
 ```
 
-### Navigate to the project directory:
+## Usage
 
-```bash
-cd typescript-boilerplate
+How to use typedFetch to make HTTP requests with typed responses:
+
+```typescript
+import { typedFetch, typedResponse } from 'typed-response';
+
+// Define your response types
+interface SuccessResponse {
+  id: number;
+  title: string;
+}
+
+interface ErrorResponse {
+  error: string;
+}
+
+async function fetchData() {
+  try {
+    // Make a GET request with typed response
+    const response: typedResponse<SuccessResponse, ErrorResponse> = await typedFetch(
+      'https://jsonplaceholder.typicode.com/posts/1'
+    );
+
+    if (response.ok) {
+      // Response is successful, so we can access the data with the SuccessResponse type.
+      const data = await response.json();
+      console.log('Received data:', data);
+    } else {
+      // Response is an error, so we can access the error data with the ErrorResponse type.
+      const errorData = await response.json();
+      console.error('Failed to fetch data:', errorData);
+    }
+  } catch (error) {
+    // Sadly JavaScript errors are not typed, so we can't access the error data with the ErrorResponse type.
+    console.error('An error occurred:', error);
+  }
+}
+
+fetchData();
 ```
-
-### Install the project dependencies:
-
-```
-npm install
-```
-
-# Usage
-
-Once you have installed the project and its dependencies, you can start writing your TypeScript code in the src directory. You can also customize the project configuration files to suit your needs.
-
-### To build your TypeScript code, run:
-
-```bash
-npm run build
-```
-
-This will generate the compiled JavaScript code in the dist directory.
-
-### To start a development server with automatic code reloading, run:
-
-```bash
-npm run dev
-```
-
-# Folder Structure
-
-The project structure is minimal and organized as follows:
-
-```bash
-typescript-boilerplate/
-├── src/
-│ ├── main.ts
-│ └── ...
-├── dist/
-│ └── ...
-├── .gitignore
-├── .eslintrc.json
-├── .prettierrc.json
-├── package.json
-├── tsconfig.json
-└── README.md
-```
-
-- **src**: Contains your TypeScript source files.
-- **dist**: Contains the compiled JavaScript files (generated after - running npm run build).
-- **.gitignore**: Specifies files and directories to be ignored by Git.
-- **.eslintrc.json**: Defines linting rules used in the project.
-- **.prettierrc.json**: Prettier configuration for code formatting.
-- **package.json**: Project dependencies and scripts.
-- **tsconfig.json**: TypeScript compiler configuration.
-
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
