@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "A simple wrapper for fetch API to get a typed response.",
   "main": "src/main.ts",
+  "repository": "https://github.com/Huijiro/typed-response",
   "scripts": {
     "build": "tsc",
     "dev": "ts-node src/main.ts"
