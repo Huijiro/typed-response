@@ -17,7 +17,7 @@ yarn add typed-response
 How to use typedFetch to make HTTP requests with typed responses:
 
 ```typescript
-import { typedFetch, typedResponse } from 'typed-response';
+import { typedFetch, TypedResponse } from 'typed-response';
 
 // Define your response types
 interface SuccessResponse {
@@ -32,7 +32,7 @@ interface ErrorResponse {
 async function fetchData() {
   try {
     // Make a GET request with typed response
-    const response: typedResponse<SuccessResponse, ErrorResponse> = await typedFetch(
+    const response: TypedResponse<SuccessResponse, ErrorResponse> = await typedFetch(
       'https://jsonplaceholder.typicode.com/posts/1'
     );
 

@@ -1,6 +1,6 @@
 {
   "name": "typed-response",
-  "version": "0.0.2",
+  "version": "1.0.2",
   "description": "A simple wrapper for fetch API to get a typed response.",
   "main": "src/main.ts",
   "repository": "https://github.com/Huijiro/typed-response",
